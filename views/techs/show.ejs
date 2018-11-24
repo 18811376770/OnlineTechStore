@@ -1,0 +1,73 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Online Tech Store</p>
+            <div class="list-group">
+                <li class="list-group-item active">Product Information</li>
+                <li class="list-group-item"><a href="http://www.pricegrabber.com/">Price Math</a></li>
+                <li class="list-group-item"><a href="https://www.bestbuy.com/">Best Buy</a></li>
+            </div>
+        </div>
+        <% var totalNumber = tech.quantity %>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%= tech.image %>">
+                <div class="caption-full">
+                    <% tech.comments.forEach(function(comment){ %>
+                        <%tech.quantity = tech.quantity - comment.quan %>
+                    <% }) %>
+                    <% if(tech.quantity <= 0) { %>
+                    <h4 class="pull-right">This product is out of stock or deleted</h4>
+                    <% }else{ %>
+                    <h4 class="pull-right">$<%= tech.price %>/piece </h4>
+                    <h4 class="pull-right">The seller still has <strong><%= tech.quantity %></strong> pieces left for&nbsp </h4>
+                    <% } %>
+                    <h4><a><%=tech.name%></a></h4> 
+                    <p><%= tech.description %></p>
+                    <p>
+                        <em>Created By <%= tech.author.username %></em>
+                    </p>
+                    <% if(currentUser && (tech.author.id.equals(currentUser._id) || currentUser._id.equals("5a2365c5e4c3290b66f69ddb"))){ %>
+                        <a class="btn btn-xs btn-warning" href="/techs/<%= tech._id %>/edit">Edit and Delete</a>
+                    <% }%>
+                </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/techs/<%= tech._id %>/comments/new">Purchase</a>
+                </div>
+                <% tech.comments.forEach(function(comment){ %>
+                <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                        <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                            <% totalNumber = totalNumber - comment.quan %>
+                            <% if(totalNumber < 0) { %>
+                            <strong><%= comment.author.username %></strong>
+                            <p> This product is out of stock or deleted </p>
+                            <% }else{ %>
+                            <strong><%= comment.author.username %></strong>
+                            <p>
+                                Order Quantity: <strong><%= comment.quan %>&nbsp</strong>
+                                Payment Price: <strong><%= comment.quan * tech.price %>&nbsp</strong>
+                                <br>
+                                Address: <%= comment.text %> 
+                            </p>
+                            <% }%>
+                        
+                            <a class="btn btn-xs btn-warning" 
+                               href="/techs/<%=tech._id %>/comments/<%=comment._id %>/edit">Edit</a>
+                            <form id="delete-form" action="/techs/<%=tech._id %>/comments/<%=comment._id %>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                        <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

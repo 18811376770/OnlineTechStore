@@ -1,0 +1,30 @@
+<% include ../partials/header %> 
+
+ <div class="container">
+     <header class="jumbotron">
+         <div class="container">
+             <h1>Your Wish List </h1>
+             <p>Find the treasures you treasure</p>
+         </div>
+     </header>
+     
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% techs.forEach(function(tech){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <img src="<%= tech.image %>">
+                   <div class="caption">
+                       <h4><%= tech.name %></h4>
+                   </div>
+                   <form id="delete-form" action="/wishlist/<%=tech._id %>?_method=DELETE" method="POST">
+                        <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                   </form>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+    <br>
+      <a href="/techs">Go Back</a>
+</div>
+
+<% include ../partials/footer %>
