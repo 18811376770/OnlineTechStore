@@ -22,15 +22,25 @@ router.post("/register", function(req, res){
         req.flash("error", "The password's length should greater or equal to 8");
         res.redirect("/register"); 
     }else{
-    var newUser = new User({username: req.body.username});
+    if(req.body.username.trim() == "admin"){
+        console.log("isadmin")
+        var newUser = new User({username: req.body.username, isadmin: true});
+    }
+    else{
+        console.log("isnot admin!")
+        var newUser = new User({username: req.body.username, isadmin: false});
+    }
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             req.flash("error", err.message);
             res.redirect("/register"); 
         }
         passport.authenticate("local")(req, res, function(){
-           req.flash("success", "Welcome to Online Tech Store " + user.username);
-           res.redirect("/techs"); 
+        req.flash("success", "Welcome to Online Tech Store " + user.username);
+        if(user.isadmin == true){
+            res.redirect("/techs?isadmin=true"); 
+        }
+        else res.redirect("/techs?isadmin=false"); 
         });
     });
     }
@@ -42,12 +52,29 @@ router.get("/login", function(req, res){
 });
 
 //handling login logic
-router.post("/login", passport.authenticate("local", 
-    {
-        successRedirect: "/techs",
-        failureRedirect: "/login"
-    }), function(req, res){
-});
+// router.post("/login", passport.authenticate("local", 
+//     {   
+//         successRedirect: next(),
+//         failureRedirect: "/login"
+//     }), function(req, res){
+//         if(req.body.isadmin == true){
+//             res.redirect("/techs?isadmin=true"); 
+//         }
+//         else res.redirect("tech")
+// });
+
+router.post(
+    '/login',
+    passport.authenticate('local', {
+      failureRedirect: '/login'
+    }), (req, res) => {
+      if (req.user.isadmin == true) {
+        res.redirect('/techs?isadmin=true');
+      }
+      if (req.user.isadmin == false) {
+        res.redirect('/techs?isadmin=false');
+      }
+    });
 
 // logout route
 router.get("/logout", function(req, res){
