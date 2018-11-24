@@ -57,6 +57,8 @@ app.use("/wishlist", wishlistRoutes);
 app.use("/search",searchRoutes);
 
 
-app.listen(process.env.PORT, process.env.IP, function(){
-   console.log("The Online Tech Store Server Has Started!");
-});
+// app.listen(process.env.PORT, process.env.IP, function(){
+//    console.log("The Online Tech Store Server Has Started!");
+// });
+
+app.listen(8080)

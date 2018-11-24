@@ -13,3 +13,11 @@
 #delete-form {
     display: inline;
 }
+
+.navcss a {
+    color: #fff;
+}
+.navcss a:hover {
+    color: #fff;
+    text-decoration:none;
+}
