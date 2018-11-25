@@ -25,7 +25,7 @@ router.get("/", function(req, res){
                     if(err){
                         console.log(err);
                     } else {
-                        res.render("techs/index",{techs:allTechs, current: page, pages: Math.ceil(count / perPage)});
+                        res.render("techs/index",{techs:allTechs, current: page, pages: Math.ceil(count / perPage), isadmin:req.query.isadmin});
                     }
                 });
             }

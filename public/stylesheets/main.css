@@ -1,3 +1,6 @@
+body {
+    background: #eeeeee;
+}
 .thumbnail img {
     width: 100%;
 }
@@ -20,4 +23,11 @@
 .navcss a:hover {
     color: #fff;
     text-decoration:none;
+}
+.index-container {
+    margin: 20px auto;
+    background-image: url("https://thumbs.dreamstime.com/z/white-wood-planks-background-rustic-white-wood-planks-background-wood-texture-109733114.jpg");
+}
+.input-text {
+    margin-top: 20px; 
 }

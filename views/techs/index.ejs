@@ -1,15 +1,18 @@
 <% include ../partials/header %> 
  <div class="container">
-     <header class="jumbotron">
-         <div class="container">
-             <h1>Welcome To Online Tech Store!</h1>
-             <p>Fancy electronics handpicked by website's users</p>
+     <header class="jumbotron index-container">
+         <div class="container index-content">
+             <!-- <h1>Welcome To Online Tech Store!</h1>
+             <p>You can buy all you want!</p> -->
              <p>
-                <a class="btn btn-primary btn-large" href="/techs/new">Add New Tech Product</a>
-                <a href="/techs/filter" class="btn btn-primary btn-large">Filter All Active Product</a>
+                <h1>Welcome to Tech Store</h1>
+                <%if (isadmin == 'true') {%> 
+                    <a class="btn btn-primary btn-warning" href="/techs/new">Add New Tech Product</a>
+                <% } %>    
+                <a href="/techs/filter" class="btn btn-primary btn-success">Filter All Active Product</a>
                 <div style="width: 25%">
                 <form action="/search" method="post">
-                <div class="form-group">
+                <div class="form-group input-text">
                     <input class="form-control" type="text" name="itemName" placeholder="Item Name">
                 </div>
                 <div class="form-group">
@@ -30,8 +33,12 @@
                        <h4><%= tech.name %></h4>
                    </div>
                    <p>
-                       <a href="/techs/<%= tech._id %>" class="btn btn-primary">More Info</a>
-                       <a href="/wishlist/<%= tech._id %>" class="btn btn-primary">Add to Wish List</a>
+                    <%if (isadmin == 'true') {%>
+                        <a href="/techs/<%= tech._id %>" class="btn btn-primary">More Info</a>
+                    <% } else { %>    
+                        <a href="/wishlist/<%= tech._id %>" class="btn btn-warning">Add to Wish List</a>
+                        <a class="btn btn-success" href="/techs/<%= tech._id %>/comments/new">Purchase</a>
+                    <% } %>    
                    </p>
                 </div>
             </div>
