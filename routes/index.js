@@ -38,9 +38,13 @@ router.post("/register", function(req, res){
         passport.authenticate("local")(req, res, function(){
         req.flash("success", "Welcome to Online Tech Store " + user.username);
         if(user.isadmin == true){
-            res.redirect("/techs?isadmin=true"); 
+            req.session.isadmin = true;
+            res.redirect("/techs"); 
         }
-        else res.redirect("/techs?isadmin=false"); 
+        else {
+            req.session.isadmin = false;
+            res.redirect("/techs"); 
+        }
         });
     });
     }
@@ -48,7 +52,7 @@ router.post("/register", function(req, res){
 
 //show login form
 router.get("/login", function(req, res){
-   res.render("login"); 
+    res.render("login"); 
 });
 
 //handling login logic
@@ -69,10 +73,12 @@ router.post(
       failureRedirect: '/login'
     }), (req, res) => {
       if (req.user.isadmin == true) {
-        res.redirect('/techs?isadmin=true');
+        req.session.isadmin = true;
+        res.redirect('/techs');
       }
       if (req.user.isadmin == false) {
-        res.redirect('/techs?isadmin=false');
+        req.session.isadmin = false;
+        res.redirect('/techs');
       }
     });
 
@@ -80,6 +86,7 @@ router.post(
 router.get("/logout", function(req, res){
    req.logout();
    req.flash("success", "Logged you out!");
+   req.session.destroy();
    res.redirect("/techs");
 });
 

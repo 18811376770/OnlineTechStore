@@ -8,7 +8,8 @@ var path = require('path');
 
 
 router.get("/", function(req, res){
-    console.log(req.query.isadmin);
+    console.log("req.query.isadmin:" + req.query.isadmin);
+    console.log("req.session.isadmin:" + req.session.isadmin)
     var perPage = 8;
     var page = req.query.page || 1;
 
