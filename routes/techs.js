@@ -25,7 +25,7 @@ router.get("/", function(req, res){
                     if(err){
                         console.log(err);
                     } else {
-                        res.render("techs/index",{techs:allTechs, current: page, pages: Math.ceil(count / perPage), isadmin:req.query.isadmin});
+                        res.render("techs/index",{techs:allTechs, current: page, pages: Math.ceil(count / perPage), isadmin:req.session.isadmin});
                     }
                 });
             }
@@ -106,20 +106,20 @@ router.get("/:id", function(req, res){
         } else {
             console.log(foundTech)
             //render show template with that tech
-            res.render("techs/show", {tech: foundTech});
+            res.render("techs/show", {tech: foundTech, isadmin: req.session.isadmin});
         }
     });
 });
 
 // EDIT TECH ROUTE
-router.get("/:id/edit", middleware.checkTechOwnership, function(req, res){
+router.get("/:id/edit", function(req, res){
     Tech.findById(req.params.id, function(err, foundTech){
         res.render("techs/edit", {tech: foundTech});
     });
 });
 
 // UPDATE TECH ROUTE
-router.put("/:id",middleware.checkTechOwnership, upload, function(req, res){
+router.put("/:id", upload, function(req, res){
     // find and update the correct tech
     var name = req.body.name;
     var price = req.body.price;

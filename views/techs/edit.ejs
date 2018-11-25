@@ -2,8 +2,6 @@
 <% include ../partials/header %>
 <div class="container">
     <div class="row">
-        <h1 style="text-align: center">Edit <%= tech.name %></h1>
-        <h5 style="text-align: center">Delete: set the quantity as 0</h5>
         <div style="width: 30%; margin: 25px auto;">
             <form action="/techs/<%= tech._id %>?_method=PUT" enctype="multipart/form-data"  method="POST">
                 <div class="form-group">

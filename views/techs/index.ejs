@@ -6,7 +6,7 @@
              <p>You can buy all you want!</p> -->
              <p>
                 <h1>Welcome to Tech Store</h1>
-                <%if (isadmin == 'true') {%> 
+                <%if (isadmin === true) {%> 
                     <a class="btn btn-primary btn-warning" href="/techs/new">Add New Tech Product</a>
                 <% } %>    
                 <a href="/techs/filter" class="btn btn-primary btn-success">Filter All Active Product</a>
@@ -33,7 +33,7 @@
                        <h4><%= tech.name %></h4>
                    </div>
                    <p>
-                    <%if (isadmin == 'true') {%>
+                    <%if (isadmin === true) {%>
                         <a href="/techs/<%= tech._id %>" class="btn btn-primary">More Info</a>
                     <% } else { %>    
                         <a href="/wishlist/<%= tech._id %>" class="btn btn-warning">Add to Wish List</a>

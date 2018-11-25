@@ -28,9 +28,7 @@
                     <p>
                         <em>Created By <%= tech.author.username %></em>
                     </p>
-                    <% if(currentUser && (tech.author.id.equals(currentUser._id) || currentUser._id.equals("5a2365c5e4c3290b66f69ddb"))){ %>
-                        <a class="btn btn-xs btn-warning" href="/techs/<%= tech._id %>/edit">Edit and Delete</a>
-                    <% }%>
+                    <a class="btn btn-xs btn-warning" href="/techs/<%= tech._id %>/edit">Edit and Delete</a>
                 </div>
             </div>
             <div class="well">

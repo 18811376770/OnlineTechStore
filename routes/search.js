@@ -12,7 +12,7 @@ router.post("/", function(req, res){
        if(err){
            console.log(err);
        } else {
-          res.render("searches/index",{techs:allTechs, item: item});
+          res.render("searches/index",{techs:allTechs, item: item, isadmin: req.session.isadmin});
        }
     });
 });
