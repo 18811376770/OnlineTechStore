@@ -20,6 +20,7 @@ router.get("/new",middleware.isLoggedIn, function(req, res){
 //Comments Create
 router.post("/",middleware.isLoggedIn,function(req, res){
    //lookup tech using ID
+   console.log("req.params.id:"+req.params.id);
    Tech.findById(req.params.id, function(err, tech){
        if(err){
            console.log(err);
@@ -37,11 +38,31 @@ router.post("/",middleware.isLoggedIn,function(req, res){
                comment.save();
                tech.comments.push(comment);
                tech.save();
-               console.log(comment);
+               console.log("comment:\n"+comment);
                req.flash("success", "Successfully added purchase");
-               res.redirect('/techs/' + tech._id);
+            //    res.redirect('/techs/' + tech._id);
+            var newQuantity;
+            Tech.findById(req.params.id, function(err, foundTech){
+                if(err){
+                    console.log("findbyid error");
+                    res.redirect("back");
+                }
+                else{
+                    newQuantity = foundTech.quantity - req.body.comment.quan;
+                    Tech.findByIdAndUpdate(req.params.id, {quantity: newQuantity}, function(err, updatedTech){
+                        if(err){
+                            console.log("error\n"+ err);
+                            res.redirect("/techs");
+                        } else {
+                            console.log("updatedTech"+updatedTech);
+                            //redirect somewhere(show page)
+                            res.redirect("/techs/" + req.params.id);
+                        }
+                        });
+                }
+            })
            }
-        });
+        });  
        }
    });
 });
