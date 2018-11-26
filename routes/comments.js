@@ -41,15 +41,13 @@ router.post("/",middleware.isLoggedIn,function(req, res){
                console.log("comment:\n"+comment);
                req.flash("success", "Successfully added purchase");
             //    res.redirect('/techs/' + tech._id);
-            var newQuantity;
             Tech.findById(req.params.id, function(err, foundTech){
                 if(err){
                     console.log("findbyid error");
                     res.redirect("back");
                 }
                 else{
-                    newQuantity = foundTech.quantity - req.body.comment.quan;
-                    Tech.findByIdAndUpdate(req.params.id, {quantity: newQuantity}, function(err, updatedTech){
+                    Tech.findByIdAndUpdate(req.params.id, {quantity: foundTech.quantity - req.body.comment.quan}, function(err, updatedTech){
                         if(err){
                             console.log("error\n"+ err);
                             res.redirect("/techs");
