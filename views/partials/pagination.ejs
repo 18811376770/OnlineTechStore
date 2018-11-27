@@ -1,28 +1,39 @@
-<% if (pages > 0) { %>
-    <ul class="pagination text-center">
-        <% if (current == 1) { %>
-            <li class="disabled"><a>First</a></li>
-        <% } else { %>
-            <li><a href="/techs?page=1">First</a></li>
-        <% } %>
-        <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-        <% if (i !== 1) { %>
-            <li class="disabled"><a>...</a></li>
-        <% } %>
-        <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
-            <% if (i == current) { %>
-                <li class="active"><a><%= i %></a></li>
-            <% } else { %>
-                <li><a href="/techs?page=<%= i %>"><%= i %></a></li>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Online Tech Store</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </head>
+    <body>
+            <% if (pages > 0) { %>
+                <nav aria-label="Page navigation example">
+                <ul class="pagination text-center">
+                    <% if (current == 1) { %>
+                        <li class="disabled page-item"><a class="page-link">First</a></li>
+                    <% } else { %>
+                        <li class="page-item"><a href="/techs?page=1" class="page-link">First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled page-item"><a class="page-link">...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active page-item"><a class="page-link"><%= i %></a></li>
+                        <% } else { %>
+                            <li class="page-item"><a class="page-link" href="/techs?page=<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled page-item"><a class="page-link">...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled page-item"><a class="page-link">Last</a></li>
+                    <% } else { %>
+                        <li class="page-item"><a class="page-link" href="/techs?page=<%= pages %>">Last</a></li>
+                    <% } %>
+                </ul>
+            </nav>
             <% } %>
-            <% if (i == Number(current) + 4 && i < pages) { %>
-                <li class="disabled"><a>...</a></li>
-            <% } %>
-        <% } %>
-        <% if (current == pages) { %>
-            <li class="disabled"><a>Last</a></li>
-        <% } else { %>
-            <li><a href="/techs?page=<%= pages %>">Last</a></li>
-        <% } %>
-    </ul>
-<% } %>
+    </body>
+</html>
