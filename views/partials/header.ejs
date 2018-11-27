@@ -4,12 +4,18 @@
         <title>Online Tech Store</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="/stylesheets/main.css">
+        <style>
+        ul button{
+            margin: 5px;
+        }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="/">Online Tech Store</a>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="nav navbar-nav navcss">
+                    <button class="btn btn-secondary"><a href="/techs">Home Page</a></button>
                     <button class="btn btn-secondary"><a href="/wishlist">Wish List</a></button>
                     <% if(!currentUser || currentUser.username == null || currentUser.username.length == 0){ %>
                         <button class="btn btn-secondary"><a href="/login">Login</a></button>

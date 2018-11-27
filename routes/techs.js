@@ -50,7 +50,7 @@ router.get("/filter", function(req, res){
        if(err){
            console.log(err);
        } else {
-          res.render("techs/filter",{techs:allTechs});
+          res.render("techs/filter",{techs:allTechs, isadmin:req.session.isadmin});
        }
     });
 });
