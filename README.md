@@ -39,12 +39,18 @@ Languages/frameworks used:
 * Database Design: Jiadao Zou, Erdong Liao
   
 ## Screen Shoots:
-**Landing Page**![landing page](media/15430989675994/landing%20page.jpg)
-**Sign Up**![sign up](media/15430989675994/sign%20up.jpg)
-**Login In**![login](media/15430989675994/login.jpg)
+**Landing Page**!![landing page](media/15430989675994/landing%20page.jpg)
 
-**Add New Item**![create new product](media/15430989675994/create%20new%20product.jpg)
+**Sign Up**!![sign up](media/15430989675994/sign%20up.jpg)
+
+**Login In**!![login](media/15430989675994/login.jpg)
+
+
+**Add New Item**!![create new product](media/15430989675994/create%20new%20product.jpg)
+
 **Search Items**![Search ite](media/15430989675994/Search%20item.jpg)
-**Wish List**![wish list](media/15430989675994/wish%20list.jpg)
+
+**Wish List**!![wish list](media/15430989675994/wish%20list.jpg)
+
 
 
