@@ -28,7 +28,10 @@
                     <p>
                         <em>Created By <%= tech.author.username %></em>
                     </p>
-                    <a class="btn btn-xs btn-warning" href="/techs/<%= tech._id %>/edit">Edit and Delete</a>
+                    <%if (isadmin === true) {%>
+                        <a class="btn btn-xs btn-warning" href="/techs/<%= tech._id %>/edit">Edit and Delete</a>
+                    <% } else { %>    
+                    <% } %>  
                 </div>
             </div>
             <div class="well">
