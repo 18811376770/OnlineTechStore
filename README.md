@@ -38,7 +38,7 @@ Languages/frameworks used:
 * Client-side scripting: Wang Zhan, Jiadao Zou 
 * Database Design: Jiadao Zou, Erdong Liao
   
-## Screen Shoots:
+## Screen Shots:
 **Landing Page**!![landing page](media/15430989675994/landing%20page.jpg)
 
 **Sign Up**!![sign up](media/15430989675994/sign%20up.jpg)
