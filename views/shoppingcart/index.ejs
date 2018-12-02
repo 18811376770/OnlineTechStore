@@ -1,0 +1,38 @@
+<% include ../partials/header %> 
+
+ <div class="container">
+     <header class="jumbotron">
+         <div class="container">
+             <h1>Your Shopping Cart</h1>
+         </div>
+         <h5>Total: </h5>
+         <button>Check Out</button>
+     </header>
+     
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% techs.forEach(function(tech){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <img src="<%= tech.image %>">
+                   <div class="caption">
+                       <h4><%= tech.name %></h4>
+                   </div>  
+                    <div class="input-group spinner">
+                        <input id="input-number" type="text" class="form-control" value="<%= tech.quantity %>">
+                        <div class="input-group-btn-vertical"> 
+                            <a href="/shoppingcart/<%=tech._id %>/quantityPlus" type="button" id="plus" class="btn btn-default"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+                            <a href="/shoppingcart/<%=tech._id %>/quantityMinus" type="button" id="minus" class="btn btn-default"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                        </div>
+                        <form id="delete-form" action="/shoppingcart/<%=tech._id %>?_method=DELETE" method="POST" style="display: inline-block; padding-left: 60px">
+                            <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                       </form>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+    <br>
+      <a href="/techs">Go Back</a>
+</div>
+
+<% include ../partials/footer %>

@@ -8,6 +8,8 @@ var express     = require("express"),
     methodOverride = require("method-override"),
     Tech  = require("./models/tech"),
     Wishlist = require("./models/wishlist"),
+    Shoppingcart = require("./models/shoppingcart"),
+    Order = require("./models/order"),
     Comment     = require("./models/comment"),
     User        = require("./models/user"),
     seedDB      = require("./seeds")
@@ -17,7 +19,9 @@ var commentRoutes    = require("./routes/comments"),
     techRoutes = require("./routes/techs"),
     indexRoutes      = require("./routes/index"),
     wishlistRoutes  = require("./routes/wishlist"),
-    searchRoutes  = require("./routes/search")
+    searchRoutes  = require("./routes/search"),
+    orderRoutes = require("./routes/orders"),
+    shoppingcartRoutes = require("./routes/shoppingcart")
     
  
 var url = process.env.DATABASEURL || "mongodb://localhost/tech5";
@@ -55,6 +59,8 @@ app.use("/techs", techRoutes);
 app.use("/techs/:id/comments", commentRoutes);
 app.use("/wishlist", wishlistRoutes);
 app.use("/search",searchRoutes);
+app.use("/orders",orderRoutes);
+app.use("/shoppingcart",shoppingcartRoutes);
 
 app.listen(process.env.PORT||3000, process.env.IP, function(){
    console.log("The Online Tech Store Server Has Started!");

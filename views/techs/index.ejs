@@ -36,8 +36,8 @@
                     <%if (isadmin === true) {%>
                         <a href="/techs/<%= tech._id %>" class="btn btn-primary">More Info</a>
                     <% } else { %>    
-                        <a href="/wishlist/<%= tech._id %>" class="btn btn-warning">Add to Wish List</a>
-                        <a class="btn btn-success" href="/techs/<%= tech._id %>/comments/new">Purchase</a>
+                        <a href="/shoppingcart/<%= tech._id %>" class="btn btn-warning">Add to Cart</a>
+                        <a class="btn btn-success" href="/techs/<%= tech._id %>">Details</a>
                     <% } %>    
                    </p>
                 </div>
