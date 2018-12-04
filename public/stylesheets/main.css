@@ -69,4 +69,9 @@ body {
     top: 0;
     left: 4px;
   }
+  .show-image {
+      display: inline-block;
+      width: 255px;
+      height: 155px;
+  }
   

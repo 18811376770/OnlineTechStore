@@ -6,19 +6,21 @@
              <h1>Your Orders </h1>
          </div>
      </header>
-     
-     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-        <% techs.forEach(function(tech){ %>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                   <img src="<%= tech.image %>">
-                   <div class="caption">
-                       <h4><%= tech.name %></h4>
-                   </div>
-                </div>
-            </div>
+    <ul class="list-group">
+        <% orders.forEach(function(order){ %>
+            <li class="list-item">
+                <div> <%= order.time %></div>
+                <% var size = order.items.length %>
+                <% for (var i = 0; i < size; i++){ %>
+                    <div><%= order.items[i] %> </div>
+                    <div>  Quantity: <%= order.quantities[i] %> </div>
+                    <img style="width: 255px; height: 155px;" src="<%= order.images[i] %>">
+                <% } %>
+                <div>Total: <%= order.sum %></div>
+            </li>
+            <br>
         <% }); %>
-    </div>
+    </ul>
     <br>
       <a href="/techs">Go Back</a>
 </div>

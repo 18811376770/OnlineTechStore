@@ -5,15 +5,22 @@
          <div class="container">
              <h1>Your Shopping Cart</h1>
          </div>
-         <h5>Total: </h5>
-         <button>Check Out</button>
+         <% var sum = 0 %>
+         <% techs.forEach(function(tech){ %>
+         <%   sum += tech.price * tech.quantity; %>
+         <% }) %>
+         <% if (techs.length !== 0){ %>
+            <h5>Total: <%= sum %></h5>
+            <a class="btn btn-warning" href="/order/new">Check Out</a>
+         <% } %>
      </header>
      
      <div class="row text-center" style="display:flex; flex-wrap: wrap;">
         <% techs.forEach(function(tech){ %>
+            <% sum += tech.price %>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
-                   <img src="<%= tech.image %>">
+                        <img style="width: 255px; height: 155px;" src="<%= tech.image%>">
                    <div class="caption">
                        <h4><%= tech.name %></h4>
                    </div>  

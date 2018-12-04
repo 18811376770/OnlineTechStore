@@ -20,7 +20,7 @@ var commentRoutes    = require("./routes/comments"),
     indexRoutes      = require("./routes/index"),
     wishlistRoutes  = require("./routes/wishlist"),
     searchRoutes  = require("./routes/search"),
-    orderRoutes = require("./routes/orders"),
+    orderRoutes = require("./routes/order"),
     shoppingcartRoutes = require("./routes/shoppingcart")
     
  
@@ -59,7 +59,7 @@ app.use("/techs", techRoutes);
 app.use("/techs/:id/comments", commentRoutes);
 app.use("/wishlist", wishlistRoutes);
 app.use("/search",searchRoutes);
-app.use("/orders",orderRoutes);
+app.use("/order",orderRoutes);
 app.use("/shoppingcart",shoppingcartRoutes);
 
 app.listen(process.env.PORT||3000, process.env.IP, function(){
