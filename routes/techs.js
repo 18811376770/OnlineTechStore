@@ -65,6 +65,8 @@ router.post("/",middleware.isLoggedIn, upload, function(req, res){
     var name = req.body.name;
     var price = req.body.price;
     var quantity = req.body.quantity;
+    var category = req.body.category;
+    console.log('category: ' + category)
     var image = null;
     if(filename == null || filename.length == 0){
         image = req.body.image;
@@ -77,14 +79,14 @@ router.post("/",middleware.isLoggedIn, upload, function(req, res){
         id: req.user._id,
         username: req.user.username
     }
-    var newTech = {name: name, price: price, quantity: quantity, image: image, description: desc, author:author}
+    var newTech = {name: name, price: price, quantity: quantity, image: image, description: desc, author:author, category: category}
     // Create a new tech and save to DB
     Tech.create(newTech, function(err, newlyCreated){
         if(err){
             console.log(err);
         } else {
             //redirect back to techs page
-            console.log(newlyCreated);
+            // console.log(newlyCreated);
             res.redirect("/techs");
         }
     });

@@ -8,13 +8,32 @@ var middleware = require("../middleware");
 router.post("/", function(req, res){
     // Get all techs from DB
     var item = req.body.itemName;
-    Tech.find({}, function(err, allTechs){
-       if(err){
-           console.log(err);
-       } else {
-          res.render("searches/index",{techs:allTechs, item: item, isadmin: req.session.isadmin});
-       }
-    });
+    var category = req.body.category;
+    if (category === 'Choose...') category = '';
+    if (item==='' && category==='') {
+        Tech.find({}, function(err, allTechs){
+           if(err){
+               console.log(err);
+           } else {
+                // console.log('allTechs: ' + allTechs);
+                res.render("searches/index",{techs:allTechs, item: item, isadmin: req.session.isadmin, category: category});
+           }
+        });
+    } else {
+        Tech.find({
+            $or:[
+                {category: category},
+                {name: item}
+            ]
+        }, function(err, allTechs){
+           if(err){
+               console.log(err);
+           } else {
+                // console.log('allTechs: ' + allTechs);
+                res.render("searches/index",{techs:allTechs, item: item, isadmin: req.session.isadmin, category: category});
+           }
+        });
+    }
 });
 
 

@@ -7,7 +7,7 @@ var middleware = require("../middleware");
 //Comments New
 router.get("/new",middleware.isLoggedIn, function(req, res){
     // find tech by id
-    console.log(req.params.id);
+    // console.log(req.params.id);
     Tech.findById(req.params.id, function(err, tech){
         if(err){
             console.log(err);
@@ -20,7 +20,7 @@ router.get("/new",middleware.isLoggedIn, function(req, res){
 //Comments Create
 router.post("/",middleware.isLoggedIn,function(req, res){
    //lookup tech using ID
-   console.log("req.params.id:"+req.params.id);
+   // console.log("req.params.id:"+req.params.id);
    Tech.findById(req.params.id, function(err, tech){
        if(err){
            console.log(err);
@@ -38,7 +38,7 @@ router.post("/",middleware.isLoggedIn,function(req, res){
                comment.save();
                tech.comments.push(comment);
                tech.save();
-               console.log("comment:\n"+comment);
+               // console.log("comment:\n"+comment);
                req.flash("success", "Successfully added purchase");
             //    res.redirect('/techs/' + tech._id);
             Tech.findById(req.params.id, function(err, foundTech){
@@ -52,7 +52,7 @@ router.post("/",middleware.isLoggedIn,function(req, res){
                             console.log("error\n"+ err);
                             res.redirect("/techs");
                         } else {
-                            console.log("updatedTech"+updatedTech);
+                            // console.log("updatedTech"+updatedTech);
                             //redirect somewhere(show page)
                             res.redirect("/techs/" + req.params.id);
                         }

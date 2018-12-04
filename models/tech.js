@@ -6,6 +6,7 @@ var techSchema = new mongoose.Schema({
    quantity: Number,
    image: String,
    description: String,
+   category: String,
    author: {
       id: {
          type: mongoose.Schema.Types.ObjectId,

@@ -13,7 +13,7 @@ router.get("/", middleware.isLoggedIn, function(req, res){
        if(err){
            console.log(err);
        } else {
-          res.render("oders/index",{techs:allOrders});
+          res.render("orders/index",{techs:allOrders});
        }
     });
 });

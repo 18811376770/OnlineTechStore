@@ -13,7 +13,7 @@ var storage = multer.diskStorage({
 		callback(null, './public/images');
 	},
 	filename: function(req, file, callback) {
-		console.log(file);
+		// console.log(file);
 		callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
 	}
 });
