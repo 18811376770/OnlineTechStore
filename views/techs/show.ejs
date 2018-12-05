@@ -29,7 +29,12 @@
                         <em>Created By <%= tech.author.username %></em>
                     </p>
                     <%if (isadmin === true) {%>
-                        <a class="btn btn-xs btn-warning" href="/techs/<%= tech._id %>/edit">Edit and Delete</a>
+                        <a class="btn btn-xs btn-warning" href="/techs/<%= tech._id %>/edit">Edit</a>
+                        <% if (tech.display) {%>
+                            <a class="btn btn-xs btn-danger" href="/techs/<%= tech._id %>/delete">Delete</a>
+                        <% } else { %>
+                            <a class="btn btn-xs btn-danger" href="/techs/<%= tech._id %>/recover">Recover</a>
+                        <% } %>
                     <% } else { %>    
                     <% } %>  
                 </div>

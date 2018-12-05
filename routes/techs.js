@@ -79,7 +79,8 @@ router.post("/",middleware.isLoggedIn, upload, function(req, res){
         id: req.user._id,
         username: req.user.username
     }
-    var newTech = {name: name, price: price, quantity: quantity, image: image, description: desc, author:author, category: category}
+    var display = true;
+    var newTech = {name: name, price: price, quantity: quantity, image: image, description: desc, author:author, category: category, display: display}
     // Create a new tech and save to DB
     Tech.create(newTech, function(err, newlyCreated){
         if(err){
@@ -106,7 +107,7 @@ router.get("/:id", function(req, res){
         if(err){
             console.log(err);
         } else {
-            console.log(foundTech)
+            // console.log(foundTech)
             //render show template with that tech
             res.render("techs/show", {tech: foundTech, isadmin: req.session.isadmin});
         }
@@ -119,6 +120,28 @@ router.get("/:id/edit", function(req, res){
         res.render("techs/edit", {tech: foundTech});
     });
 });
+
+// Delete tech
+router.get("/:id/delete", function(req, res){
+    Tech.findByIdAndUpdate (req.params.id, {display: false}, function(err){
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect("/techs/" + req.params.id);
+        }
+    });
+})
+
+// Recover tech
+router.get("/:id/recover", function(req, res){
+    Tech.findByIdAndUpdate (req.params.id, {display: true}, function(err){
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect("/techs/" + req.params.id);
+        }
+    });
+})
 
 // UPDATE TECH ROUTE
 router.put("/:id", upload, function(req, res){
@@ -143,7 +166,7 @@ router.put("/:id", upload, function(req, res){
        if(err){
            res.redirect("/techs");
        } else {
-           console.log(updatedTech);
+           // console.log(updatedTech);
            //redirect somewhere(show page)
            res.redirect("/techs/" + req.params.id);
        }

@@ -38,22 +38,24 @@
      
      <div class="row text-center" style="display:flex; flex-wrap: wrap;">
         <% techs.forEach(function(tech){ %>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <img style="width: 255px; height: 155px;" src="<%= tech.image%>">
-                   <div class="caption">
-                       <h4><%= tech.name %></h4>
-                   </div>
-                   <p>
-                    <%if (isadmin === true) {%>
-                        <a href="/techs/<%= tech._id %>" class="btn btn-primary">More Info</a>
-                    <% } else { %>    
-                        <a href="/shoppingcart/<%= tech._id %>" class="btn btn-warning">Add to Cart</a>
-                        <a class="btn btn-success" href="/techs/<%= tech._id %>">Details</a>
-                    <% } %>    
-                   </p>
+            <% if (tech.display || isadmin === true){ %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                        <img style="width: 255px; height: 155px;" src="<%= tech.image%>">
+                    <div class="caption">
+                        <h4><%= tech.name %></h4>
+                    </div>
+                    <p>
+                        <%if (isadmin === true) {%>
+                            <a href="/techs/<%= tech._id %>" class="btn btn-primary">More Info</a>
+                        <% } else { %>    
+                            <a href="/shoppingcart/<%= tech._id %>" class="btn btn-warning">Add to Cart</a>
+                            <a class="btn btn-success" href="/techs/<%= tech._id %>">Details</a>
+                        <% } %>    
+                    </p>
+                    </div>
                 </div>
-            </div>
+            <% } %>    
         <% }); %>
     </div>
     <% include ../partials/pagination %>

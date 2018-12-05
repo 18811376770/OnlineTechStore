@@ -17,7 +17,9 @@
             <h5>Total: <%= sum %></h5>
             <% if (!flag){ %> 
                 <a class="btn btn-warning" href="/order/new">Check Out</a>
-            <% } %>
+            <% } else {%>
+                <h3>Not enough stock！！！</h3>
+            <% }%>
          <% } %>
      </header>
      

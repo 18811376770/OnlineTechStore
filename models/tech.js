@@ -7,6 +7,7 @@ var techSchema = new mongoose.Schema({
    image: String,
    description: String,
    category: String,
+   display: Boolean,
    author: {
       id: {
          type: mongoose.Schema.Types.ObjectId,
