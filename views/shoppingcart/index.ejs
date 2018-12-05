@@ -7,21 +7,15 @@
          </div>
          <% var sum = 0; %>
          <% var flag = false; %>
-         <% var display = true; %>
          <% techs.forEach(function(tech){ %>
             <% sum += tech.price * tech.quantity; %>
             <% if (tech.quantity > checkStore[tech.name]){ %>
                 <% flag = true; %>
             <% } %>
-            <% if (!tech.display){ %>
-                <% display = false; %>
-            <% } %>    
          <% }); %>
          <% if (techs.length !== 0){ %>
             <h5>Total: <%= sum %></h5>
-            <% if (!display){ %> 
-                <h3> One of your items is temporary not in service!!!</h3>
-            <% } else if(!flag) {%>
+            <% if (!flag){ %> 
                 <a class="btn btn-warning" href="/order/new">Check Out</a>
             <% } else {%>
                 <h3>Not enough stock！！！</h3>
