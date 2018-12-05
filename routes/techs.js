@@ -66,7 +66,7 @@ router.post("/",middleware.isLoggedIn, upload, function(req, res){
     var price = req.body.price;
     var quantity = req.body.quantity;
     var category = req.body.category;
-    console.log('category: ' + category)
+    // console.log('category: ' + category)
     var image = null;
     if(filename == null || filename.length == 0){
         image = req.body.image;

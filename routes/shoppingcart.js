@@ -10,16 +10,26 @@ var middleware = require("../middleware");
 router.get("/", middleware.isLoggedIn, function(req, res){
     // Get all techs from DB
     Shoppingcart.find({belong: req.user.username}, function(err, allTechs){
+        var checkStore = {}; 
        if(err){
            console.log(err);
        } else {
-          res.render("shoppingcart/index",{techs:allTechs});
+            Tech.find({}, function(err, store){
+                if (err) {
+                    console.log(err);
+                } else {
+                    store.forEach(function(item){
+                        checkStore[item.name] = item.quantity;
+                    })
+                    res.render("shoppingcart/index",{techs:allTechs, checkStore:checkStore});
+                }
+            })
        }
     });
 });
 
 
-router.get("/:id", function(req, res){
+router.get("/:id", middleware.isLoggedIn, function(req, res){
     //find the tech with provided ID
     Tech.findById(req.params.id).populate("comments").exec(function(err, foundTech){
         if(err){
@@ -35,7 +45,7 @@ router.get("/:id", function(req, res){
                 username: foundTech.author.username
             }
             var belong = req.user.username;
-            console.log(belong);
+            // console.log(belong);
             var newShoppingcart = {name: name, price: price, quantity: quantity, image: image, description: desc, author:author, belong : belong}
             // Create a new wishlist and save to DB
             Shoppingcart.create(newShoppingcart, function(err, newlyCreated){

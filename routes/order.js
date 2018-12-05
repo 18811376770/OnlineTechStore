@@ -37,14 +37,9 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
             })
             var belong = req.user.username;
             var date = new Date();
-            console.log(date);
+            // console.log(date);
             var belong = req.user.username;
             var newOrder = {images: images, items: items, quantities: quantities, sum: sum, time: date, belong: belong};
-            Shoppingcart.remove({belong: req.user.username}, function(err){
-                if (err){
-                    console.log(err);
-                }
-            })
             Order.create(newOrder, function(err, newCreated){
                 if(err) {
                     console.log(err);
@@ -52,6 +47,37 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
                     res.redirect("/order");
                 }
             })
+            Shoppingcart.remove({belong: req.user.username}, function(err){
+                if (err){
+                    console.log(err);
+                }
+            })
+            var size = items.length;
+            // var temp = [];
+            for (var i = 0; i < size; i++){
+                var temp = 0 - quantities[i];
+                Tech.update({name: items[i]}, {$inc: {quantity: temp}}, function(err){
+                    if(err) {
+                        console.log(err);
+                    }
+                    // } else {
+                    //     var temp = quantities.shift() - tech.quantity;
+                    //     var name = items.shift();
+                    //     console.log('quantity: '+ temp);
+                    //     console.log('name: '+name);
+                    //     Tech.update({name: name}, {quantity: temp}, function(err){
+                    //         if (err) console.log(err);
+                    //     })
+                    // }
+                })
+            }
+            // for (var j = 0; j < size; j++) {
+            //     var newQuantity = temp[j] - quantities[j];
+            //     console.log('newQuantity' + newQuantity);
+            //     Tech.update({name: items[i]}, {quantity: newQuantity}, function(err){
+            //         if (err) console.log(err);
+            //     })
+            // }
         }
       })
 })

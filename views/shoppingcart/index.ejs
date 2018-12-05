@@ -5,13 +5,19 @@
          <div class="container">
              <h1>Your Shopping Cart</h1>
          </div>
-         <% var sum = 0 %>
+         <% var sum = 0; %>
+         <% var flag = false; %>
          <% techs.forEach(function(tech){ %>
-         <%   sum += tech.price * tech.quantity; %>
-         <% }) %>
+            <% sum += tech.price * tech.quantity; %>
+            <% if (tech.quantity > checkStore[tech.name]){ %>
+                <% flag = true; %>
+            <% } %>
+         <% }); %>
          <% if (techs.length !== 0){ %>
             <h5>Total: <%= sum %></h5>
-            <a class="btn btn-warning" href="/order/new">Check Out</a>
+            <% if (!flag){ %> 
+                <a class="btn btn-warning" href="/order/new">Check Out</a>
+            <% } %>
          <% } %>
      </header>
      
