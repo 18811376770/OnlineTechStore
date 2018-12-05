@@ -9,11 +9,11 @@ var middleware = require("../middleware");
 //INDEX - show all techs
 router.get("/", middleware.isLoggedIn, function(req, res){
     // Get all techs from DB
-    Shoppingcart.find({belong: req.user.username}, function(err, allWishlists){
+    Shoppingcart.find({belong: req.user.username}, function(err, allTechs){
        if(err){
            console.log(err);
        } else {
-          res.render("shoppingcart/index",{techs:allWishlists});
+          res.render("shoppingcart/index",{techs:allTechs});
        }
     });
 });

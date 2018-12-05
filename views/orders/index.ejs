@@ -3,18 +3,19 @@
  <div class="container">
      <header class="jumbotron">
          <div class="container">
-             <h1>Your Orders </h1>
+             <h1>Order List</h1>
          </div>
      </header>
     <ul class="list-group">
         <% orders.forEach(function(order){ %>
-            <li class="list-item">
+            <li class="list-item order-list">
                 <div> <%= order.time %></div>
                 <% var size = order.items.length %>
                 <% for (var i = 0; i < size; i++){ %>
                     <div><%= order.items[i] %> </div>
                     <div>  Quantity: <%= order.quantities[i] %> </div>
                     <img style="width: 255px; height: 155px;" src="<%= order.images[i] %>">
+                    <hr>
                 <% } %>
                 <div>Total: <%= order.sum %></div>
             </li>

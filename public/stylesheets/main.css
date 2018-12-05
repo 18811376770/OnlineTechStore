@@ -74,4 +74,9 @@ body {
       width: 255px;
       height: 155px;
   }
+
+  .order-list {
+    border: 2px solid #ccc;
+    list-style:none;
+  }
   
