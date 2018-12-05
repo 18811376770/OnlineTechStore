@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var techSchema = new mongoose.Schema({
+var cartSchema = new mongoose.Schema({
    name: String,
    price: String,
    quantity: Number,
@@ -13,13 +13,7 @@ var techSchema = new mongoose.Schema({
       },
       username: String
    },
-  //  comments: [
-  //     {
-  //        type: mongoose.Schema.Types.ObjectId,
-  //        ref: "Comment"
-  //     }
-  //  ],
    belong: String
 });
 
-module.exports = mongoose.model("Shoppingcart", techSchema);
+module.exports = mongoose.model("Shoppingcart", cartSchema);
